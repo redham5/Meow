@@ -14,10 +14,43 @@
         <p class="text-gray-500"><strong>Price: </strong>{{ item.price }}</p>
         <p class="text-gray-500"><strong>Seller: </strong>{{ item.create_by.username }}</p>
         
-        
-        <p class="text-gray-700"><strong class="text-gray-500">Discription: </strong>{{ item.discription }}</p>
+        {% if item.discription %}
+            <p class="text-gray-700">
+                <strong class="text-gray-500">Discription: </strong>{{ item.discription }}
+            </p>
+        {% endif %}
+
+        <a href="#" class="inline-block mt-4 px-3 py-2 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Contact Seller</a>
+
     </div>
 
+</div>
+
+
+<div class="mt-6 px-6 py-12 bg-gray-100 rouneded-xl">
+    <h2 class="mb-12 text-2xl text-center">Related Items</h2>
+
+    <div class="grid grid-cols-3 gap-3">
+        {% for item in related_items %}
+        <div>
+            <a href="{% url 'item:detail' item.id %}">
+                <div>
+                    <img src="{{ item.image.url }}" class="rounded-t-xl" alt="item">
+                </div>
+
+                <div class="p-6 bg-white rouneded-b-xl">
+                    <h2 class="text-2xl">
+                        {{ item.name }}
+                    </h2>
+                    <p class="text-gray-500">
+                        Price: {{ item.price }}
+                    </p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+
+    </div>
 </div>
 {% endblock %}
 
