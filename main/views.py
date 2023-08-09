@@ -1,6 +1,8 @@
 from django.shortcuts import render
+
 from item.models import Category, Item
 
+from .forms import SignupForm
 
 def index(request):
     items = Item.objects.filter(is_sold=False)[0:6]
@@ -22,3 +24,11 @@ def privacy_policy(request):
 
 def term_of_use(request):
     return render(request, 'main/term_of_use.html')
+
+
+def signup(request):
+    form = SignupForm()
+
+    return render(request, 'main/signup.html', {
+        'form' : form
+    })
